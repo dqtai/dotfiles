@@ -118,4 +118,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
+bash year-progress.sh
