@@ -70,8 +70,8 @@ keys = [
     # To open Nemo
     Key([mod], "e", lazy.spawn("nemo")),
 
-    # To open Vivaldi
-    Key([mod], "v", lazy.spawn("vivaldi-stable")),
+    # To open Brave
+    Key([mod], "v", lazy.spawn("brave-browser")),
 
     # To toggle full screen
     Key([mod], "f", lazy.window.toggle_fullscreen()),
