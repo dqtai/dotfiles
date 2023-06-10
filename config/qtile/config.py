@@ -71,7 +71,7 @@ keys = [
     # My custom keybindings.
 
     # To run the word definition script
-    Key([mod], "l", lazy.spawn(os.path.expanduser ("bash /home/user/Downloads/word.sh"))),
+    Key([mod], "l", lazy.spawn(os.path.expanduser ("bash /home/user/Documents/word.sh"))),
 
     # To take screenshots, fullscreen
     Key([], "Print", lazy.spawn("flameshot full --path /home/user")),
