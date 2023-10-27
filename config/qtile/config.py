@@ -13,14 +13,13 @@ terminal = "kitty"
 keys = [
     # Switch between windows
     Key([mod], "h", lazy.layout.left(),
-        desc="Move focus to left"),
+        desc="Move focus to the left"),
     Key([mod], "l", lazy.layout.right(),
-        desc="Move focus to right"),
+        desc="Move focus to the right"),
     Key([mod], "j", lazy.layout.down(),
         desc="Move focus down"),
     Key([mod], "k", lazy.layout.up(),
         desc="Move focus up"),
-
     Key(["mod1"], "tab", lazy.layout.next(),
         desc="Move focus to the next window"),
 
@@ -54,12 +53,12 @@ keys = [
     # multiple stack panes
     # Key([mod, "shift"], "Return", lazy.layout.toggle_split(), 
         #desc="Toggle between split and unsplit sides of stack"),
-    
     Key([mod], "return", lazy.spawn(terminal),
         desc="Launch terminal"),
 
     # Toggle between different layouts as defined below
-    # Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    # Key([mod], "Tab", lazy.next_layout(), 
+        #desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(),
         desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(),
@@ -69,21 +68,27 @@ keys = [
     Key([mod], "p", lazy.spawncmd(),
         desc="Spawn a command using a prompt widget"),
     
-    # Volume
 
     # My custom keybindings.
 
     # To run word definition script
     Key([mod], "l", lazy.spawn(os.path.expanduser ("bash /home/user/Documents/word.sh"))),
 
-    # To control volume
+    # To control volume with amixer
     Key([mod], "m", lazy.spawn(os.path.expanduser ("bash /home/user/Documents/volume.sh toggle"))),
 
     Key([mod], "KP_Multiply", lazy.spawn(os.path.expanduser ("bash /home/user/Documents/volume.sh up"))),
 
     Key([mod], "KP_Divide", lazy.spawn(os.path.expanduser ("bash /home/user/Documents/volume.sh down"))),
 
-    # To take screenshots, fullscreen
+    # To control volume with Pulseaudio
+    #Key([mod], "m", lazy.spawn(os.path.expanduser ("bash /home/user/Documents/volpulse.sh toggle"))),
+
+    #Key([mod], "KP_Multiply", lazy.spawn(os.path.expanduser ("bash /home/user/Documents/volpulse.sh up"))),
+
+    #Key([mod], "KP_Divide", lazy.spawn(os.path.expanduser ("bash /home/user/Documents/volpulse.sh down"))),
+
+   # To take screenshots, fullscreen
     Key([], "Print", lazy.spawn("flameshot full --path /home/user")),
 
     # To take screenshots, GUI
@@ -111,11 +116,27 @@ keys = [
     Key([mod], "F10", lazy.spawn("systemctl reboot")),
 
     # To shutdown computer
+
     Key([mod], "F11", lazy.spawn("systemctl poweroff")),
+
+    # To run rofi-wifi-menu.sh
+
+    Key([mod], "F12", lazy.spawn(os.path.expanduser ("bash /home/user/Documents/rofi-wifi-menu.sh"))),
+
 
 ]
 
-groups = [Group(i) for i in "123456789"]
+groups = [
+    Group('1', label='一'),
+    Group('2', label='二'),
+    Group('3', label='三'),
+    Group('4', label='四'),
+    Group('5', label='五'),
+    Group('6', label='六'),
+    Group('7', label='七'),
+    Group('8', label='八'),
+    Group('9', label='九'),
+]
 
 for i in groups:
     keys.extend([
@@ -201,9 +222,14 @@ screens = [
                 #widget.Clock(format='%Y-%m-%d %a %H:%M'),   # 2022-12-30 18:30
                 widget.Clock(
                     font='Noto Sans',
-                    format='  %a, %b %d  %H:%M', # Sun, Dec 30  18:30
+                    format='  %a, %b %d %H:%M', # Sun, Dec 30 18:30
+                    mouse_callbacks={
+                    'Button1': lazy.spawn(os.path.expanduser ("bash /home/user/Documents/calendar.sh")),
+                    'Button2': lazy.spawn(os.path.expanduser ("bash /home/user/Documents/calendar.sh prev")),
+                    'Button3': lazy.spawn(os.path.expanduser ("bash /home/user/Documents/calendar.sh next")),
+                    }
                     ),
-                widget.Spacer(length=6),
+                widget.Spacer(length=8),
             ],
             25,
             # Nort, East, South, West
